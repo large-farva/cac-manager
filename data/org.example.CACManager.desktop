@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=CAC Manager
+GenericName=DoD CAC Manager
+Comment=Manage DoD Common Access Cards (CAC) on Linux
+Exec=flatpak run org.example.CACManager
+Icon=accessories-contacts
+Terminal=false
+Type=Application
+Categories=Utility;Security;
+StartupNotify=true
+Keywords=CAC;Smart Card;DoD;PKI;
