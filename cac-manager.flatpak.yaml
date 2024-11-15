@@ -1,0 +1,68 @@
+id: org.example.CACManager
+runtime: org.gnome.Platform//44
+sdk: org.gnome.Sdk//44
+command: cac-manager
+modules:
+  - name: desktop-file
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 data/org.example.CACManager.desktop /app/share/applications/org.example.CACManager.desktop
+
+  - name: cac-manager
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://github.com/yourusername/cac-manager.git
+
+  - name: pcsc-lite
+    buildsystem: simple
+    build-commands:
+      - ./configure --prefix=/app
+      - make -j4
+      - make install
+    sources:
+      - type: archive
+        url: https://pcsclite.apdu.fr/files/pcsc-lite-2.3.0.tar.xz
+        sha256: 1acca22d2891d43ffe6d782740d32e78150d4fcc99e8a3cc763abaf546060d3d
+
+  - name: opensc
+    buildsystem: simple
+    build-commands:
+      - ./bootstrap
+      - ./configure --prefix=/app
+      - make -j4
+      - make install
+    sources:
+      - type: archive
+        url: https://github.com/OpenSC/OpenSC/releases/download/0.26.0/opensc-0.26.0.tar.gz
+        sha256: 837baead45e1505260d868871056150ede6e73d35460a470f2595a9e5e75f82b
+
+  - name: ccid
+    buildsystem: simple
+    build-commands:
+      - ./configure --prefix=/app
+      - make -j4
+      - make install
+    sources:
+      - type: archive
+        url: https://ccid.apdu.fr/files/ccid-1.6.1.tar.xz
+        sha256: 2eca8fb07e8fe7c0d39daeaca7b97cd73c40ed9b72738a24ad3dcbdfc918e1ea
+
+  - name: libusb
+    buildsystem: meson
+    config-opts:
+      - -Dprefix=/app
+    sources:
+      - type: archive
+        url: https://github.com/libusb/libusb/releases/download/v1.0.27/libusb-1.0.27.tar.bz2
+        sha256: e8f18a7a36ecbb11fb820bd71540350d8f61bcd9db0d2e8c18a6fb80b214a3de
+
+finish-args:
+  - --device=all
+  - --talk-name=org.freedesktop.FileManager1
+  - --filesystem=home
+  - --share=ipc
+  - --socket=session-bus
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --socket=pcsc
