@@ -1,0 +1,9 @@
+<span size='large'>Welcome to CAC Manager!</span>
+
+<span size='large'><u>Features</u></span>
+
+<span size='medium'>• <b>Install Required Software:</b> Helps you set up the necessary software.</span>
+<span size='medium'>• <b>Install DoD Certificates:</b> Download and install the certificates needed for DoD CAC.</span>
+<span size='medium'>• <b>Configure Browser for CAC:</b> Guide you through configuring browsers for CAC use.</span>
+<span size='medium'>• <b>Test:</b> Run tests to verify CAC functionality.</span>
+<span size='medium'>• <b>Troubleshoot:</b> Provides common troubleshooting steps.</span>
